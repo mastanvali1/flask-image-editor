@@ -44,7 +44,7 @@ def login():
         password = request.form['Password']
     
         # Here you can implement your own authentication logic
-        if username == 'admin' and password == 'password':
+        if username == 'mastan' and password == 'mastan@2024':
             session['username'] = username
             return redirect(url_for('home'))
         else:
@@ -99,4 +99,4 @@ def edit():
         return redirect(url_for('login'))
 
 if __name__ == "__main__":
-   
+    
