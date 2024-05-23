@@ -15,98 +15,21 @@
                 font-family: Arial, sans-serif; /* Use a sans-serif font */
             }
     
-            header {
-    background: #1877F2;
-    color: #fff;
-    padding: 1rem 0;
-    position: relative;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-.logo a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.5rem;
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.hamburger span {
-    background: #fff;
-    margin: 4px 0;
-    width: 25px;
-    height: 3px;
-    border-radius: 2px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-nav ul li {
-    margin: 0 1rem;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-}
-
-nav ul li a:hover {
-    background: #555;
-    border-radius: 5px;
-}
-
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
-
-    nav ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background: #1877F2;
-    }
-
-    nav ul li {
-        margin: 0;
-    }
-
-    nav ul li a {
-        padding: 1rem;
-        text-align: center;
-        width: 100%;
-        display: block;
-    }
-
-    nav ul li a:hover {
-        background: #555;
-    }
-
-    nav ul.active {
-        display: flex;
-    }
-}
+            .navbar {
+                background-color: #343a40; /* Dark background color for the navbar */
+            }
+    
+            .navbar-brand {
+                color: #ffffff; /* White text color for the navbar brand */
+            }
+    
+            .navbar-nav .nav-link {
+                color: #ffffff; /* White text color for the navbar links */
+            }
+    
+            .navbar-nav .nav-link:hover {
+                color: #dee2e6; /* Lighter text color on hover */
+            }
     
             .container.my-4 {
                 max-width: 600px; /* Set maximum width for the container */
@@ -141,44 +64,48 @@ nav ul li a:hover {
                 border-color: #0056b3; /* Darker border color on hover */
             }
             footer {
-    background: #1877F2;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
+                position: fixed;
+                bottom: 0;
+                width: 85%;
+            }
         </style>
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="index.html">Image Editor</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand me-auto" href="/">IMG Editor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/how">How to use</a>
+                    </li>
+                    
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        {% if 'username' in session %}
+                          <a href="{{ url_for('logout') }}" class="btn btn-dark nav-link logout ">Logout</a>
+                        {% else %}
+                            <a class="nav-link" href="/login">Login</a>
+                            <a class="nav-link" href="/signup">Signup</a>
+                        {% endif %}
+                    </li>
+                </ul>
             </div>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul id="nav-menu">
-                <li><a href="{{url_for('home')}}">Home</a></li>
-                <li><a href="{{url_for('about')}}">About</a></li>
-                <li><a href="{{url_for('htu')}}">How to use</a></li>
-                <li>
-                    {% if 'username' in session %}
-                      <a href="{{ url_for('logout') }}" class="btn btn-dark  logout ">Logout</a>
-                    {% else %}
-                        <a href="/signup">Signup</a>
-                    {% endif %}
-                </li>
-            </ul>
-            
-
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
@@ -215,26 +142,35 @@ nav ul li a:hover {
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+        <symbol id="instagram" viewBox="0 0 16 16">
+            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+        </symbol>
+        <symbol id="github" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 0C5.372 0 0 5.373 0 12c0 5.303 3.438 9.8 8.208 11.384.6.112.82-.258.82-.577 0-.285-.01-1.038-.015-2.03-3.338.724-4.042-1.612-4.042-1.612-.546-1.384-1.332-1.753-1.332-1.753-1.089-.743.083-.727.083-.727 1.204.085 1.839 1.238 1.839 1.238 1.07 1.834 2.81 1.305 3.498.998.108-.772.417-1.305.76-1.605-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.468-2.383 1.235-3.223-.135-.304-.536-1.527.104-3.184 0 0 1.008-.324 3.3 1.232A11.516 11.516 0 0 1 12 5.525c.988.003 1.985.133 2.913.393 2.29-1.556 3.296-1.232 3.296-1.232.642 1.657.239 2.88.117 3.184.77.84 1.233 1.913 1.233 3.223 0 4.61-2.805 5.624-5.476 5.922.43.369.812 1.1.812 2.216 0 1.601-.014 2.889-.014 3.281 0 .32.216.695.825.576C20.568 21.798 24 17.303 24 12c0-6.627-5.373-12-12-12z"/>
+        </symbol>
     </svg>
-    <footer>
-        <p>&copy; 2024 Image Editor. All rights reserved.</p>
-    </footer>
-
     
 
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+          <div class="col-md-4 d-flex align-items-center">
+            
+            <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 IMG Editor, Inc</span>
+          </div>
+      
+          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3"><a class="text-body-secondary" href="https://github.com/mastanvali1"><svg class="bi" width="24" height="24"><use xlink:href="#github"/></svg></a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="https://www.instagram.com/mastan._.v/?utm_source=qr&igsh=MWVkbG5ydTVneGRwcg%3D%3D"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+            
+          </ul>
+        </footer>
+      </div>
 
-    <script>document.addEventListener("DOMContentLoaded", () => {
-        const hamburger = document.getElementById("hamburger");
-        const navMenu = document.getElementById("nav-menu");
-        const logoutButton = document.getElementById("logout");
 
-        hamburger.addEventListener("click", () => {
-            navMenu.classList.toggle("active");
-        });  
-    });
-    
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
