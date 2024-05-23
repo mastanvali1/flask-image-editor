@@ -2,11 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>About | Image Editor</title>
+    <!-- Bootstrap CSS -->
+    
 </head>
 <body>
-    your about page here
+    {% include 'nav.html' %}
+    <main class="container mt-5">
+        <div class="card">
+            <div class="card-body" style="text-align: center;">
+                <h1 class="card-title">About Image Editor</h1>
+                <p class="card-text">Welcome to our Image Editor! This tool allows you to easily convert images between PNG, JPG, and WEBP formats. Our goal is to provide a simple and efficient way for users to handle their image conversion needs.</p>
+                <p class="card-text">Whether you're a professional photographer, a graphic designer, or just someone who needs to convert images occasionally, our Image Editor is here to help. We are committed to continuously improving the tool and adding more features to enhance your experience.</p>
+                <p class="card-text">Thank you for using our Image Editor!</p>
+            </div>
+        </div>
+    </main>
+    {% include 'footer.html' %}
+    <!-- Bootstrap JS and dependencies -->
+   
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
 </body>
 </html>

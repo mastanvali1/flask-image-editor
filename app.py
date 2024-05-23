@@ -72,6 +72,13 @@ def about():
     else:
         return redirect(url_for('login'))
 
+@app.route("/howtouse")
+def htu():
+    if 'username' in session:
+        return render_template("howtouse.html")
+    else:
+        return redirect(url_for('login'))
+
 @app.route("/edit", methods=["GET", "POST"])
 def edit():
     if 'username' in session:
